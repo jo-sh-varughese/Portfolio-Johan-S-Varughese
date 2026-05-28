@@ -46,20 +46,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 
 /* HERO */
 #hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden;border-bottom:3px solid var(--lime)}
-.hero-content{display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 4rem;position:relative;z-index:2}
-.hello-eyebrow{font-family:var(--fm);font-size:.62rem;color:var(--lime);text-transform:uppercase;letter-spacing:.35em;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;animation:fade-up .7s .1s cubic-bezier(.25,1,.5,1) both}
-.hello-eyebrow::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--lime)}
-.hello-cycler{height:clamp(4.5rem,13vw,12rem);position:relative;overflow:hidden;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both}
-.hello-word{position:absolute;top:0;left:0;font-size:clamp(4.5rem,13vw,12rem);font-weight:900;line-height:1;color:var(--white);transform:translateY(110%);opacity:0;transition:transform .65s cubic-bezier(.76,0,.24,1),opacity .35s;display:flex;align-items:flex-end;gap:.2em;white-space:nowrap}
+.hero-content{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 3rem 4rem;position:relative;z-index:2}
+.hello-eyebrow{font-family:var(--fm);font-size:.62rem;color:var(--lime);text-transform:uppercase;letter-spacing:.35em;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:1rem;animation:fade-up .7s .1s cubic-bezier(.25,1,.5,1) both}
+.hello-eyebrow::before,.hello-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:var(--lime)}
+.hello-cycler{width:100%;height:clamp(4.5rem,13vw,12rem);position:relative;overflow:hidden;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both}
+.hello-word{position:absolute;top:0;left:0;right:0;font-size:clamp(4.5rem,13vw,12rem);font-weight:900;line-height:1;color:var(--white);transform:translateY(110%);opacity:0;transition:transform .65s cubic-bezier(.76,0,.24,1),opacity .35s;display:flex;align-items:flex-end;justify-content:center;gap:.2em;white-space:nowrap}
 .hello-word.active{transform:translateY(0);opacity:1}
 .hello-word.exit{transform:translateY(-110%);opacity:0}
 .lang-sup{font-size:.08em;font-family:var(--fm);color:var(--lime);padding-bottom:.5em;letter-spacing:.2em}
-.hero-name{font-family:var(--fd);font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em;margin-top:1.8rem;line-height:1.05;position:relative;display:inline-block;animation:fade-up .7s .45s cubic-bezier(.25,1,.5,1) both}
+.hero-name{font-family:var(--fd);font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em;margin-top:1.8rem;line-height:1.05;position:relative;display:block;text-align:center;animation:fade-up .7s .45s cubic-bezier(.25,1,.5,1) both}
 .hero-name span{color:var(--lime)}
 .hero-name:hover{animation:glitch .4s steps(2) both}
 @keyframes glitch{0%{transform:translate(0)}20%{transform:translate(-3px,1px);color:var(--lime)}40%{transform:translate(3px,-1px);color:var(--orange)}60%{transform:translate(-2px,2px)}80%{transform:translate(2px,-2px)}100%{transform:translate(0)}}
-.hero-tagline{font-size:clamp(.85rem,1.4vw,1rem);color:rgba(240,237,230,.52);max-width:520px;margin-top:1.5rem;line-height:1.8;font-weight:300;animation:fade-up .7s .55s cubic-bezier(.25,1,.5,1) both}
-.hero-ctas{display:flex;gap:1rem;margin-top:2.8rem;flex-wrap:wrap;align-items:center;animation:fade-up .7s .65s cubic-bezier(.25,1,.5,1) both}
+.hero-tagline{font-size:clamp(.85rem,1.4vw,1rem);color:rgba(240,237,230,.52);max-width:520px;margin:1.5rem auto 0;line-height:1.8;font-weight:300;animation:fade-up .7s .55s cubic-bezier(.25,1,.5,1) both;text-align:center}
+.hero-ctas{display:flex;gap:1rem;margin-top:2.8rem;flex-wrap:wrap;align-items:center;justify-content:center;animation:fade-up .7s .65s cubic-bezier(.25,1,.5,1) both}
 .btn-lime{background:var(--lime);color:var(--black);padding:.85rem 2.2rem;font-family:var(--fm);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;border:3px solid var(--black);box-shadow:5px 5px 0 rgba(197,241,53,.4);transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:.5rem}
 .btn-lime:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 rgba(197,241,53,.4)}
 .btn-ghost{background:transparent;color:var(--white);padding:.85rem 2.2rem;font-family:var(--fm);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;border:2px solid rgba(240,237,230,.2);transition:all .2s}
@@ -131,8 +131,8 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .exp-per{font-family:var(--fm);font-size:.52rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(240,237,230,.32);margin-bottom:.8rem;transition:color .3s}
 .exp-role{font-family:var(--fd);font-size:.95rem;font-weight:700;line-height:1.3;margin-bottom:.35rem;transition:color .3s}
 .exp-org{font-size:.78rem;color:rgba(240,237,230,.52);font-weight:300;margin-bottom:.8rem;transition:color .3s}
-.exp-dsc{font-size:.75rem;line-height:1.65;color:rgba(240,237,230,.42);opacity:0;max-height:0;overflow:hidden;transition:opacity .3s .1s,max-height .4s ease,color .3s}
-.exp-card:hover .exp-dsc{opacity:1;max-height:180px}
+.exp-dsc{font-size:.75rem;line-height:1.65;color:rgba(240,237,230,.72);margin-top:.5rem;transition:color .3s}
+.exp-card:hover .exp-dsc{color:var(--black)!important}
 .exp-tag{font-family:var(--fm);font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;padding:.28rem .7rem;background:rgba(197,241,53,.1);color:var(--lime);align-self:flex-start;margin-top:.8rem;transition:all .3s}
 .exp-open-hint{font-family:var(--fm);font-size:.45rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(197,241,53,0);position:absolute;bottom:1.2rem;right:1.5rem;z-index:2;transition:color .3s}
 .exp-card:hover .exp-open-hint{color:var(--black)}
@@ -208,6 +208,32 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .cert-link{margin-left:auto;color:rgba(197,241,53,.25);font-size:.75rem;flex-shrink:0;transition:color .2s}
 .cert-item:hover .cert-link{color:var(--lime)}
 
+/* RESEARCH PAPERS */
+#research{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
+.papers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(197,241,53,.12);margin-top:0}
+.paper-card{background:var(--black);padding:2.5rem;position:relative;cursor:pointer;transition:background .3s;overflow:hidden;min-height:260px}
+.paper-card.add-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;border:2px dashed rgba(197,241,53,.12);background:transparent}
+.paper-card.add-slot:hover{background:rgba(197,241,53,.02)}
+.paper-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.76,0,.24,1)}
+.paper-card:not(.add-slot):hover{background:rgba(197,241,53,.025)}
+.paper-card:not(.add-slot):hover::before{transform:scaleY(1)}
+.paper-arrow{position:absolute;top:2rem;right:2rem;font-size:1rem;color:rgba(197,241,53,.2);transition:all .3s}
+.paper-card:hover .paper-arrow{color:var(--lime);transform:translate(4px,-4px)}
+.paper-status{font-family:var(--fm);font-size:.46rem;text-transform:uppercase;letter-spacing:.2em;padding:.22rem .8rem;display:inline-block;margin-bottom:1.2rem}
+.paper-status.review{background:rgba(255,165,0,.1);color:#FFA500;border:1px solid rgba(255,165,0,.2)}
+.paper-status.published{background:rgba(0,200,100,.08);color:#00C864;border:1px solid rgba(0,200,100,.2)}
+.paper-status.wip{background:rgba(197,241,53,.08);color:rgba(197,241,53,.6);border:1px solid rgba(197,241,53,.18)}
+.paper-title{font-family:var(--fd);font-size:clamp(.9rem,1.4vw,1.2rem);font-weight:700;line-height:1.3;margin-bottom:.75rem}
+.paper-venue{font-family:var(--fm);font-size:.5rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(197,241,53,.5);margin-bottom:1rem}
+.paper-abstract{font-size:.79rem;line-height:1.78;color:rgba(240,237,230,.4);font-weight:300;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.paper-kws{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.paper-kw{font-family:var(--fm);font-size:.45rem;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border:1px solid rgba(197,241,53,.15);color:rgba(197,241,53,.45);transition:all .2s}
+.paper-card:hover .paper-kw{border-color:rgba(197,241,53,.32);color:rgba(197,241,53,.65)}
+.paper-add-icon{font-size:2.5rem;color:rgba(197,241,53,.15);margin-bottom:.8rem;line-height:1}
+.paper-add-lbl{font-family:var(--fm);font-size:.5rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,241,53,.18)}
+.paper-add-sub{font-family:var(--fm);font-size:.42rem;color:rgba(197,241,53,.1);margin-top:.4rem;letter-spacing:.1em}
+@media(max-width:768px){.papers-grid{grid-template-columns:1fr}}
+
 /* TESTIMONIALS INFINITE SCROLL */
 #testimonials{padding:6rem 0;border-bottom:1px solid rgba(197,241,53,.09);overflow:hidden}
 .testi-hdr{padding:0 3rem 3rem}
@@ -259,15 +285,18 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .pulse{width:8px;height:8px;background:#00cc44;border-radius:50%;animation:pls 1.5s ease-in-out infinite}
 @keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 
-/* SNAKE GAME PANEL */
-.contact-right{flex-shrink:0;background:var(--black);border:3px solid var(--black);padding:1.5rem;position:relative}
-.game-lbl{font-family:var(--fm);font-size:.48rem;text-transform:uppercase;letter-spacing:.25em;color:rgba(197,241,53,.5);text-align:center;margin-bottom:1rem}
-#snakeCanvas{display:block;border:1px solid rgba(197,241,53,.2);background:#070707}
+/* PONG GAME PANEL */
+.contact-right{flex-shrink:0;padding:1rem;position:relative}
+.game-lbl{font-family:var(--fm);font-size:.46rem;text-transform:uppercase;letter-spacing:.22em;color:rgba(0,0,0,.35);text-align:center;margin-bottom:.9rem}
+#pongCanvas{display:block;border:3px solid rgba(0,0,0,.18)}
 .game-hud{display:flex;justify-content:space-between;align-items:center;margin-top:.8rem}
-.game-score-disp{font-family:var(--fm);font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(197,241,53,.6)}
-#gameBtn{background:var(--lime);color:var(--black);border:none;padding:.35rem .9rem;font-family:var(--fm);font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:opacity .2s}
-#gameBtn:hover{opacity:.85}
-.game-hint-txt{font-family:var(--fm);font-size:.42rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(197,241,53,.25);text-align:center;margin-top:.6rem}
+.game-score-disp{font-family:var(--fm);font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,0,0,.5)}
+.game-btns{display:flex;gap:.35rem}
+.game-btn{background:var(--black);color:var(--lime);border:none;padding:.3rem .65rem;font-family:var(--fm);font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:transform .12s,opacity .15s;min-width:2rem;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:.25rem}
+.game-btn:hover:not(:disabled){transform:translateY(-2px);opacity:.85}
+.game-btn:active:not(:disabled){transform:translateY(0)}
+.game-btn:disabled{opacity:.25;cursor:not-allowed}
+.game-hint-txt{font-family:var(--fm);font-size:.4rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,0,0,.25);text-align:center;margin-top:.55rem}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0);display:flex;justify-content:flex-end;pointer-events:none;transition:background .4s}
@@ -351,7 +380,7 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   #download-section{flex-direction:column;gap:3rem}
   .dl-big-box{width:100%}
   .dl-pill{bottom:1rem;right:1rem}
-  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .hero-ctas{flex-direction:column;align-items:center}
   .testi-card{width:320px}
   .modal-panel{width:100vw;border-left:none;border-top:3px solid var(--lime)}
 }
@@ -377,6 +406,7 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#achievements">Awards</a></li>
@@ -589,6 +619,37 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   </div>
 </section>
 
+<!-- RESEARCH PAPERS -->
+<section id="research">
+  <div class="sec-label">Research Papers</div>
+  <div class="papers-grid">
+
+    <!-- PAPER 1 — Update data-modal="res0" content in the MDATA JS object below -->
+    <div class="paper-card rv" data-modal="res0">
+      <span class="paper-arrow">↗</span>
+      <span class="paper-status review">Under Review</span>
+      <div class="paper-title">Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks</div>
+      <div class="paper-venue">ICMLA 2026 · Main Track · Rochester Hills, MI, USA</div>
+      <div class="paper-abstract">A novel framework for detecting adversarial training attacks in federated learning systems through analysis of optimization trajectory geometry and spectral dynamics. By monitoring low-rank subspace evolution and gradient manifold perturbations across training rounds, the system identifies malicious participants without accessing raw client data.</div>
+      <div class="paper-kws">
+        <span class="paper-kw">Federated Learning</span>
+        <span class="paper-kw">Adversarial ML</span>
+        <span class="paper-kw">Spectral Dynamics</span>
+        <span class="paper-kw">Security</span>
+        <span class="paper-kw">Optimization Geometry</span>
+      </div>
+    </div>
+
+    <!-- ADD MORE PAPERS: Copy the .paper-card div above, update data-modal to res1, res2, etc., and add matching entry to MDATA in the script below -->
+    <div class="paper-card add-slot rv d1">
+      <div class="paper-add-icon">＋</div>
+      <div class="paper-add-lbl">Add Research Paper</div>
+      <div class="paper-add-sub">Copy paper-card block · add res1, res2… to MDATA</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="sec-label">Technical Skills</div>
@@ -682,7 +743,7 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   </div>
 </div>
 
-<!-- CONTACT + SNAKE GAME -->
+<!-- CONTACT + PONG GAME -->
 <section id="contact">
   <div class="contact-layout">
     <div class="contact-left">
@@ -699,12 +760,16 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
     </div>
     <div class="contact-right">
       <div class="game-lbl">Take a break — play while you think</div>
-      <canvas id="snakeCanvas" width="220" height="220"></canvas>
+      <canvas id="pongCanvas" width="280" height="210"></canvas>
       <div class="game-hud">
-        <div class="game-score-disp">Score: <span id="gameScore">0</span></div>
-        <button id="gameBtn">▶ Start</button>
+        <div class="game-score-disp">You <span id="pScore">0</span> : <span id="aiScore">0</span> AI</div>
+        <div class="game-btns">
+          <button class="game-btn" id="startBtn" title="Start / Play Again">▶ Start</button>
+          <button class="game-btn" id="pauseBtn" title="Pause / Resume" disabled>⏸</button>
+          <button class="game-btn" id="resetBtn" title="Reset">↺</button>
+        </div>
       </div>
-      <div class="game-hint-txt">Arrow keys or WASD · Tap screen on mobile</div>
+      <div class="game-hint-txt">↑ ↓ Arrow Keys · W S · P to Pause · Drag on Mobile</div>
     </div>
   </div>
 </section>
@@ -1016,6 +1081,20 @@ const MDATA={
     <p>Covered product thinking, SaaS architecture patterns, customer-centric development, collaborative engineering workflows, and communication skills for cross-functional teams — bridging the gap between academic learning and industry practice.</p>`,
     chips:['SaaS','Industry Readiness','Product Thinking','Software Development','Communication','CARESTACK'],
     links:[{label:'CARESTACK',href:'https://www.carestack.com/'}]},
+
+  /* ── RESEARCH PAPERS ── Add more entries as res1, res2, etc. */
+  res0:{tag:'Research Paper · Under Review',title:'Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks',org:'International Conference on Machine Learning and Applications (ICMLA) · Main Track',period:'2026 · Under Review · Rochester Hills, MI, USA',
+    content:`<p>This paper introduces a geometry-driven framework for detecting adversarial poisoning attacks in federated learning (FL) systems — the first to combine optimization trajectory analysis with spectral dynamics for real-time, privacy-preserving threat detection.</p>
+    <h4>Problem Statement</h4>
+    <p>In federated learning, malicious clients can inject poisoned model updates that corrupt the global model while remaining statistically indistinguishable from legitimate updates. Existing defenses rely on gradient magnitude thresholds or clustering heuristics that fail against sophisticated, low-magnitude attacks.</p>
+    <h4>Key Contribution</h4>
+    <p>The proposed framework monitors the <strong>spectral evolution</strong> of the gradient manifold across training rounds. By tracking how model update trajectories deviate from the expected low-rank subspace of honest participants — using online Streaming PCA and Johnson-Lindenstrauss projections — it identifies adversarial updates with high precision and minimal computational overhead.</p>
+    <h4>Technical Architecture</h4>
+    <p>The system employs temporal low-rank subspace tracking for online dimensionality reduction, cosine similarity profiling of optimization curvature across rounds, and an adaptive trust-weighted aggregation module that down-weights flagged participants without removing them (preventing Sybil-resistant adaptive attacks).</p>
+    <h4>Results</h4>
+    <p>Evaluated on CIFAR-10, MNIST, and a federated medical imaging benchmark under Byzantine, label-flip, and gradient-scale attacks. The framework achieves early detection (before convergence damage) with under 3% false positive rates across all settings.</p>`,
+    chips:['Federated Learning','Adversarial ML','Spectral Analysis','Streaming PCA','Byzantine Robustness','Security','JL Projections','Online Learning'],
+    links:[{label:'ICMLA 2026',href:'https://www.icmla-conference.org/'},{label:'GitHub',href:'https://github.com/johanvarughese/geotrust-fl'}]},
 };
 
 /* ─── MODAL SYSTEM ───────────────────────────── */
@@ -1048,111 +1127,226 @@ document.querySelectorAll('[data-modal]').forEach(el=>{
   el.addEventListener('click',()=>openModal(el.dataset.modal));
 });
 
-/* ─── SNAKE GAME ─────────────────────────────── */
+/* ─── PONG GAME ──────────────────────────────── */
 (function(){
-  const canvas=document.getElementById('snakeCanvas');
+  const canvas=document.getElementById('pongCanvas');
+  if(!canvas)return;
   const ctx=canvas.getContext('2d');
-  const GS=11,COLS=Math.floor(canvas.width/GS),ROWS=Math.floor(canvas.height/GS);
-  let snake,dir,nextDir,food,score,running,loop;
-  const scoreEl=document.getElementById('gameScore');
-  const btn=document.getElementById('gameBtn');
+  const W=canvas.width,H=canvas.height;
+  const PW=10,PH=52,BR=6,WIN=5;
+  const LIME='#C5F135',BLACK='#070707';
 
-  function rndFood(){
-    let pos;
-    do{pos={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)}}
-    while(snake.some(s=>s.x===pos.x&&s.y===pos.y));
-    return pos;
+  // state: 'idle' | 'running' | 'paused' | 'over'
+  let state='idle';
+  let pSc=0,aiSc=0,animId=null,speed=1;
+  let keys={};
+
+  const pEl=document.getElementById('pScore');
+  const aEl=document.getElementById('aiScore');
+  const startBtn=document.getElementById('startBtn');
+  const pauseBtn=document.getElementById('pauseBtn');
+  const resetBtn=document.getElementById('resetBtn');
+
+  let player={x:14,y:H/2-PH/2};
+  let ai={x:W-14-PW,y:H/2-PH/2};
+  let ball={x:W/2,y:H/2,vx:4,vy:2.5};
+
+  /* ── BUTTON STATE SYNC ── */
+  function syncBtns(){
+    startBtn.disabled = state==='running'||state==='paused';
+    pauseBtn.disabled = state==='idle'||state==='over';
+    resetBtn.disabled = false;
+    startBtn.textContent = state==='over'?'▶ Again':'▶ Start';
+    pauseBtn.textContent = state==='paused'?'▶':'⏸';
+    pauseBtn.title       = state==='paused'?'Resume':'Pause';
   }
 
-  function draw(){
-    ctx.fillStyle='#070707';ctx.fillRect(0,0,canvas.width,canvas.height);
-    // Grid dots
-    ctx.fillStyle='rgba(197,241,53,0.04)';
-    for(let x=0;x<COLS;x++)for(let y=0;y<ROWS;y++){if((x+y)%4===0)ctx.fillRect(x*GS+4,y*GS+4,2,2)}
-    // Snake
-    snake.forEach((seg,i)=>{
-      const alpha=i===0?1:Math.max(0.2,1-i*0.06);
-      ctx.fillStyle=i===0?'#C5F135':`rgba(197,241,53,${alpha})`;
-      ctx.fillRect(seg.x*GS+1,seg.y*GS+1,GS-2,GS-2);
-    });
-    // Food
-    ctx.fillStyle='#FF4500';
-    ctx.beginPath();
-    ctx.arc(food.x*GS+GS/2,food.y*GS+GS/2,GS/2-1,0,Math.PI*2);
-    ctx.fill();
-    // Score
-    ctx.fillStyle='rgba(197,241,53,0.35)';
-    ctx.font='bold 9px "Space Mono",monospace';
-    ctx.fillText('SCORE '+score,6,14);
+  /* ── DRAW HELPERS ── */
+  function rr(c,x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+    c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+    c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);
+    c.closePath();c.fill();
   }
 
-  function drawStart(){
-    ctx.fillStyle='#070707';ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='rgba(197,241,53,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='#C5F135';
-    ctx.font='bold 13px "Space Mono",monospace';
-    ctx.textAlign='center';
-    ctx.fillText('SNAKE',canvas.width/2,canvas.height/2-20);
-    ctx.fillStyle='rgba(197,241,53,0.45)';
-    ctx.font='9px "Space Mono",monospace';
-    ctx.fillText('Press START',canvas.width/2,canvas.height/2+4);
-    ctx.textAlign='left';
+  function drawField(){
+    ctx.fillStyle=LIME;ctx.fillRect(0,0,W,H);
+    ctx.save();ctx.setLineDash([6,8]);ctx.strokeStyle='rgba(0,0,0,.14)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,H);ctx.stroke();ctx.restore();
+    // Scores inside canvas
+    ctx.fillStyle='rgba(0,0,0,.2)';
+    ctx.font='bold 22px "Space Mono",monospace';ctx.textAlign='center';
+    ctx.fillText(pSc,W/2-34,32);ctx.fillText(aiSc,W/2+34,32);ctx.textAlign='left';
+    // Paddles
+    ctx.fillStyle=BLACK;rr(ctx,player.x,player.y,PW,PH,4);
+    ctx.fillStyle=BLACK;rr(ctx,ai.x,ai.y,PW,PH,4);
+    // Ball shadow
+    ctx.fillStyle='rgba(0,0,0,.16)';
+    ctx.beginPath();ctx.arc(ball.x+2,ball.y+2,BR,0,Math.PI*2);ctx.fill();
+    // Ball
+    ctx.fillStyle=BLACK;
+    ctx.beginPath();ctx.arc(ball.x,ball.y,BR,0,Math.PI*2);ctx.fill();
   }
 
-  function drawOver(){
-    draw();
-    ctx.fillStyle='rgba(7,7,7,0.72)';ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='#FF4500';
-    ctx.font='bold 12px "Space Mono",monospace';ctx.textAlign='center';
-    ctx.fillText('GAME OVER',canvas.width/2,canvas.height/2-12);
-    ctx.fillStyle='#C5F135';
-    ctx.font='9px "Space Mono",monospace';
-    ctx.fillText('Score: '+score,canvas.width/2,canvas.height/2+8);
-    ctx.fillStyle='rgba(197,241,53,0.4)';
-    ctx.fillText('Restart?',canvas.width/2,canvas.height/2+24);
-    ctx.textAlign='left';
+  function drawIdle(){
+    ctx.fillStyle=LIME;ctx.fillRect(0,0,W,H);
+    ctx.save();ctx.setLineDash([6,8]);ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,H);ctx.stroke();ctx.restore();
+    ctx.fillStyle=BLACK;rr(ctx,14,H/2-PH/2,PW,PH,4);
+    ctx.fillStyle=BLACK;rr(ctx,W-14-PW,H/2-PH/2,PW,PH,4);
+    ctx.fillStyle='rgba(0,0,0,.28)';
+    ctx.font='bold 13px "Space Mono",monospace';ctx.textAlign='center';
+    ctx.fillText('PONG',W/2,H/2-12);
+    ctx.fillStyle='rgba(0,0,0,.18)';
+    ctx.font='8px "Space Mono",monospace';
+    ctx.fillText('Press ▶ Start',W/2,H/2+10);ctx.textAlign='left';
   }
 
+  function drawPaused(){
+    drawField();
+    ctx.fillStyle='rgba(0,0,0,.32)';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle=LIME;
+    ctx.font='bold 14px "Space Mono",monospace';ctx.textAlign='center';
+    ctx.fillText('PAUSED',W/2,H/2-8);
+    ctx.fillStyle='rgba(0,0,0,.5)';
+    ctx.font='8px "Space Mono",monospace';
+    ctx.fillText('Press ▶ to resume',W/2,H/2+12);ctx.textAlign='left';
+  }
+
+  function drawOver(msg){
+    drawField();
+    ctx.fillStyle='rgba(0,0,0,.38)';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle=LIME;
+    ctx.font='bold 13px "Space Mono",monospace';ctx.textAlign='center';
+    ctx.fillText(msg,W/2,H/2-10);
+    ctx.fillStyle='rgba(0,0,0,.5)';
+    ctx.font='8px "Space Mono",monospace';
+    ctx.fillText('Press ▶ Again  or  ↺ Reset',W/2,H/2+12);ctx.textAlign='left';
+  }
+
+  /* ── BALL RESET ── */
+  function resetBall(dir){
+    speed=1;
+    const a=(Math.random()-.5)*1.2;
+    ball={x:W/2,y:H/2,vx:4*dir,vy:Math.sin(a)*4};
+  }
+
+  /* ── GAME UPDATE ── */
+  function update(){
+    if(state!=='running')return;
+    const SPD=5.5;
+    if((keys['ArrowUp']||keys['w']||keys['W'])&&player.y>2)player.y-=SPD;
+    if((keys['ArrowDown']||keys['s']||keys['S'])&&player.y<H-PH-2)player.y+=SPD;
+
+    ball.x+=ball.vx;ball.y+=ball.vy;
+
+    if(ball.y-BR<=0){ball.y=BR;ball.vy=Math.abs(ball.vy)}
+    if(ball.y+BR>=H){ball.y=H-BR;ball.vy=-Math.abs(ball.vy)}
+
+    // Player paddle hit
+    if(ball.x-BR<=player.x+PW&&ball.x-BR>=player.x-2&&ball.y>=player.y-BR&&ball.y<=player.y+PH+BR){
+      ball.vx=Math.abs(ball.vx)*1.06;
+      ball.vy=((ball.y-(player.y+PH/2))/(PH/2))*6;
+      speed=Math.min(speed+.05,2);
+    }
+    // AI paddle hit
+    if(ball.x+BR>=ai.x&&ball.x+BR<=ai.x+PW+2&&ball.y>=ai.y-BR&&ball.y<=ai.y+PH+BR){
+      ball.vx=-Math.abs(ball.vx)*1.06;
+      ball.vy=((ball.y-(ai.y+PH/2))/(PH/2))*6;
+      speed=Math.min(speed+.05,2);
+    }
+
+    const maxV=10;
+    if(Math.abs(ball.vx)>maxV)ball.vx=Math.sign(ball.vx)*maxV;
+    if(Math.abs(ball.vy)>maxV)ball.vy=Math.sign(ball.vy)*maxV;
+
+    // AI movement
+    const aiT=ball.y-PH/2,aiS=3.4+speed*.4;
+    if(ai.y<aiT-5)ai.y=Math.min(ai.y+aiS,H-PH);
+    else if(ai.y>aiT+5)ai.y=Math.max(ai.y-aiS,0);
+
+    // Scoring — check win BEFORE next ball release
+    if(ball.x<0){
+      aiSc++;aEl.textContent=aiSc;
+      if(aiSc>=WIN){
+        state='over';cancelAnimationFrame(animId);
+        syncBtns();drawOver('AI WINS — Try Again?');
+        return;
+      }
+      resetBall(1);
+    }
+    if(ball.x>W){
+      pSc++;pEl.textContent=pSc;
+      if(pSc>=WIN){
+        state='over';cancelAnimationFrame(animId);
+        syncBtns();drawOver('YOU WIN! \uD83C\uDF89');
+        return;
+      }
+      resetBall(-1);
+    }
+  }
+
+  /* ── GAME LOOP ── */
+  function loop(){
+    if(state!=='running'){return}
+    drawField();update();
+    animId=requestAnimationFrame(loop);
+  }
+
+  /* ── ACTIONS ── */
   function startGame(){
-    snake=[{x:Math.floor(COLS/2),y:Math.floor(ROWS/2)},{x:Math.floor(COLS/2)-1,y:Math.floor(ROWS/2)}];
-    dir={x:1,y:0};nextDir={x:1,y:0};food=rndFood();score=0;running=true;
-    scoreEl.textContent='0';btn.textContent='■ Stop';
-    clearInterval(loop);loop=setInterval(tick,130);
+    pSc=0;aiSc=0;pEl.textContent='0';aEl.textContent='0';
+    player={x:14,y:H/2-PH/2};
+    ai={x:W-14-PW,y:H/2-PH/2};
+    speed=1;
+    resetBall(Math.random()<.5?1:-1);
+    state='running';syncBtns();
+    cancelAnimationFrame(animId);
+    animId=requestAnimationFrame(loop);
   }
 
-  function stopGame(){
-    clearInterval(loop);running=false;btn.textContent='▶ Start';drawStart();
+  function pauseGame(){
+    if(state==='running'){
+      state='paused';cancelAnimationFrame(animId);
+      syncBtns();drawPaused();
+    }else if(state==='paused'){
+      state='running';syncBtns();
+      animId=requestAnimationFrame(loop);
+    }
   }
 
-  function tick(){
-    dir=nextDir;
-    const head={x:(snake[0].x+dir.x+COLS)%COLS,y:(snake[0].y+dir.y+ROWS)%ROWS};
-    if(snake.some(s=>s.x===head.x&&s.y===head.y)){clearInterval(loop);running=false;btn.textContent='▶ Restart';drawOver();return}
-    snake.unshift(head);
-    if(head.x===food.x&&head.y===food.y){score++;scoreEl.textContent=score;food=rndFood()}
-    else snake.pop();
-    draw();
+  function resetGame(){
+    cancelAnimationFrame(animId);
+    pSc=0;aiSc=0;pEl.textContent='0';aEl.textContent='0';
+    player={x:14,y:H/2-PH/2};
+    ai={x:W-14-PW,y:H/2-PH/2};
+    ball={x:W/2,y:H/2,vx:4,vy:2.5};
+    speed=1;state='idle';
+    syncBtns();drawIdle();
   }
 
-  btn.addEventListener('click',()=>{if(running){stopGame()}else{startGame()}});
+  /* ── EVENTS ── */
+  startBtn.addEventListener('click',startGame);
+  pauseBtn.addEventListener('click',pauseGame);
+  resetBtn.addEventListener('click',resetGame);
 
-  // Keyboard
-  const DIRS={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0},w:{x:0,y:-1},s:{x:0,y:1},a:{x:-1,y:0},d:{x:1,y:0},W:{x:0,y:-1},S:{x:0,y:1},A:{x:-1,y:0},D:{x:1,y:0}};
   document.addEventListener('keydown',e=>{
-    const nd=DIRS[e.key];
-    if(nd&&running&&!(nd.x===-dir.x&&nd.y===-dir.y)){e.preventDefault();nextDir=nd}
+    keys[e.key]=true;
+    if(['ArrowUp','ArrowDown'].includes(e.key)&&state==='running')e.preventDefault();
+    if((e.key==='p'||e.key==='P')&&(state==='running'||state==='paused'))pauseGame();
   });
+  document.addEventListener('keyup',e=>{keys[e.key]=false});
 
-  // Touch swipe
-  let tx=0,ty=0;
-  canvas.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
-  canvas.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
-    if(!running)return;
-    if(Math.abs(dx)>Math.abs(dy)){nextDir=dx>0?{x:1,y:0}:{x:-1,y:0}}else{nextDir=dy>0?{x:0,y:1}:{x:0,y:-1}}
-  },{passive:true});
+  canvas.addEventListener('touchmove',e=>{
+    if(state!=='running')return;e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const ty=(e.touches[0].clientY-rect.top)*(H/rect.height);
+    player.y=Math.max(0,Math.min(H-PH,ty-PH/2));
+  },{passive:false});
 
-  drawStart();
+  syncBtns();drawIdle();
 })();
 </script>
 </body>
