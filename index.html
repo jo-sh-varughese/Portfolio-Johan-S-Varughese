@@ -329,6 +329,36 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .modal-link:hover{background:var(--lime);color:var(--black)}
 .modal-link svg{width:11px;height:11px;flex-shrink:0}
 
+/* NAV CLOSE BUTTON — mobile only */
+.nav-close-li{display:none}
+@media(max-width:768px){
+  .nav-close-li{
+    display:block;
+    position:absolute;
+    top:1.4rem;right:1.4rem;
+    list-style:none;
+  }
+  .nav-close-btn{
+    width:44px;height:44px;
+    background:transparent;
+    border:1.5px solid rgba(197,241,53,.35);
+    color:var(--lime);
+    font-size:1.1rem;
+    font-family:var(--fm);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .18s,color .18s,border-color .18s,transform .18s;
+    line-height:1;
+  }
+  .nav-close-btn:hover{
+    background:var(--lime);
+    color:var(--black);
+    border-color:var(--lime);
+    transform:rotate(90deg);
+  }
+  .nav-close-btn:active{transform:rotate(90deg) scale(.9)}
+}
+
 /* REVEAL */
 @keyframes fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
@@ -339,32 +369,60 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 @media(max-width:768px){
   nav{padding:1rem 1.5rem}
   .hamburger{display:flex}
+  .nav-cta{display:none}
+
+  /* ── Full-screen overlay nav ── */
   .nav-links{
-    position:fixed;top:0;left:0;right:0;bottom:0;
+    display:none;
+    position:fixed;top:0;left:0;width:100vw;height:100vh;
+    min-height:-webkit-fill-available;
     background:var(--black);
     flex-direction:column;align-items:center;justify-content:center;
-    gap:2.8rem;z-index:499;
-    opacity:0;transform:translateX(100%);
-    transition:opacity .45s cubic-bezier(.76,0,.24,1),transform .45s cubic-bezier(.76,0,.24,1);
-    pointer-events:none;
+    gap:2.5rem;z-index:9990;
+    list-style:none;
     border-bottom:3px solid var(--lime);
   }
-  .nav-links.open{opacity:1;transform:translateX(0);pointer-events:all}
-  .nav-links li a{
-    font-size:1.25rem!important;letter-spacing:.25em;
-    color:var(--lime)!important;
-    opacity:0;transform:translateX(40px);
-    transition:opacity .4s,transform .4s,color .2s;
+  .nav-links.open{
+    display:flex;
+    animation:mob-nav-in .44s cubic-bezier(.77,0,.18,1) both;
   }
-  .nav-links.open li:nth-child(1) a{opacity:1;transform:translateX(0);transition-delay:.12s}
-  .nav-links.open li:nth-child(2) a{opacity:1;transform:translateX(0);transition-delay:.17s}
-  .nav-links.open li:nth-child(3) a{opacity:1;transform:translateX(0);transition-delay:.22s}
-  .nav-links.open li:nth-child(4) a{opacity:1;transform:translateX(0);transition-delay:.27s}
-  .nav-links.open li:nth-child(5) a{opacity:1;transform:translateX(0);transition-delay:.32s}
-  .nav-links.open li:nth-child(6) a{opacity:1;transform:translateX(0);transition-delay:.37s}
-  .nav-links.open li:nth-child(7) a{opacity:1;transform:translateX(0);transition-delay:.42s}
+  .nav-links.closing{
+    display:flex;
+    animation:mob-nav-out .36s cubic-bezier(.77,0,.18,1) both;
+  }
+  @keyframes mob-nav-in{
+    from{opacity:0;transform:translateY(-100%)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  @keyframes mob-nav-out{
+    from{opacity:1;transform:translateY(0)}
+    to{opacity:0;transform:translateY(-100%)}
+  }
+
+  /* Staggered link animations */
+  .nav-links li a{
+    color:var(--lime)!important;
+    font-size:1.3rem!important;
+    letter-spacing:.28em;
+    opacity:0;
+    display:inline-block;
+  }
+  .nav-links.open li a{animation:nav-li-in .42s cubic-bezier(.25,1,.5,1) both}
+  .nav-links.open li:nth-child(1) a{animation-delay:.08s}
+  .nav-links.open li:nth-child(2) a{animation-delay:.13s}
+  .nav-links.open li:nth-child(3) a{animation-delay:.18s}
+  .nav-links.open li:nth-child(4) a{animation-delay:.23s}
+  .nav-links.open li:nth-child(5) a{animation-delay:.28s}
+  .nav-links.open li:nth-child(6) a{animation-delay:.33s}
+  .nav-links.open li:nth-child(7) a{animation-delay:.38s}
+  .nav-links.open li:nth-child(8) a{animation-delay:.43s}
+  @keyframes nav-li-in{
+    from{opacity:0;transform:translateY(18px)}
+    to{opacity:1;transform:translateY(0)}
+  }
   .nav-links a::after{display:none}
-  .nav-cta{display:none}
+  /* ── end overlay nav ── */
+
   section,#download-section{padding:4rem 1.5rem}
   #about{grid-template-columns:1fr;gap:2.5rem}
   .exp-grid{grid-template-columns:1fr}
@@ -383,10 +441,16 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   .hero-ctas{flex-direction:column;align-items:center}
   .testi-card{width:320px}
   .modal-panel{width:100vw;border-left:none;border-top:3px solid var(--lime)}
+  /* Smaller hello cycler on phones */
+  .hello-cycler{height:clamp(2.6rem,12vw,4.5rem)}
+  .hello-word{font-size:clamp(2.6rem,12vw,4.5rem)}
 }
 @media(max-width:480px){
   .contact-grid{grid-template-columns:1fr}
   .cert-grid{grid-template-columns:1fr}
+  /* Even smaller on very small screens */
+  .hello-cycler{height:clamp(2rem,11vw,3.5rem)}
+  .hello-word{font-size:clamp(2rem,11vw,3.5rem)}
 }
 </style>
 </head>
@@ -404,6 +468,9 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 <nav>
   <a href="#hero" class="nav-logo">JSV — 2026</a>
   <ul class="nav-links" id="navLinks">
+    <li class="nav-close-li">
+      <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button>
+    </li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#research">Research</a></li>
@@ -925,9 +992,25 @@ if(cur&&ring){
 }
 
 /* ─── HAMBURGER ──────────────────────────────── */
+/* ─── HAMBURGER ──────────────────────────────── */
 const ham=document.getElementById('hamburger'),nav=document.getElementById('navLinks');
-ham.addEventListener('click',()=>{ham.classList.toggle('open');nav.classList.toggle('open');document.body.style.overflow=nav.classList.contains('open')?'hidden':''});
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');nav.classList.remove('open');document.body.style.overflow=''}));
+function openNav(){
+  nav.classList.remove('closing');
+  nav.classList.add('open');
+  ham.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeNav(){
+  nav.classList.add('closing');
+  ham.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(()=>nav.classList.remove('open','closing'),380);
+}
+ham.addEventListener('click',()=>{
+  nav.classList.contains('open')?closeNav():openNav();
+});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
+document.getElementById('navCloseBtn')?.addEventListener('click',closeNav);
 
 /* ─── MODAL DATA ─────────────────────────────── */
 /* TIP: Add a real cover image by inserting an <img> inside #modalImgArea after opening */
