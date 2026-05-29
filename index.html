@@ -49,11 +49,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .hero-content{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 3rem 4rem;position:relative;z-index:2}
 .hello-eyebrow{font-family:var(--fm);font-size:.62rem;color:var(--lime);text-transform:uppercase;letter-spacing:.35em;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:1rem;animation:fade-up .7s .1s cubic-bezier(.25,1,.5,1) both}
 .hello-eyebrow::before,.hello-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:var(--lime)}
-.hello-cycler{width:100%;height:clamp(4.5rem,13vw,12rem);position:relative;overflow:hidden;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both}
-.hello-word{position:absolute;top:0;left:0;right:0;font-size:clamp(4.5rem,13vw,12rem);font-weight:900;line-height:1;color:var(--white);transform:translateY(110%);opacity:0;transition:transform .65s cubic-bezier(.76,0,.24,1),opacity .35s;display:flex;align-items:flex-end;justify-content:center;gap:.2em;white-space:nowrap}
-.hello-word.active{transform:translateY(0);opacity:1}
-.hello-word.exit{transform:translateY(-110%);opacity:0}
-.lang-sup{font-size:.08em;font-family:var(--fm);color:var(--lime);padding-bottom:.5em;letter-spacing:.2em}
+.hello-cycler{width:100%;height:clamp(4.5rem,13vw,12rem);position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both;overflow:hidden}
+.hello-word{font-size:clamp(4.5rem,13vw,12rem);font-weight:900;line-height:1;color:var(--white);display:flex;align-items:flex-end;justify-content:center;gap:.1em;white-space:nowrap;min-height:1em}
+.hello-cursor{display:inline-block;width:0.055em;height:0.82em;background:var(--lime);margin-bottom:0.1em;animation:hc-blink .75s step-end infinite;flex-shrink:0;border-radius:1px;align-self:flex-end}
+@keyframes hc-blink{0%,100%{opacity:1}50%{opacity:0}}
+.lang-sup{font-size:.08em;font-family:var(--fm);color:var(--lime);padding-bottom:.5em;letter-spacing:.2em;opacity:.75;margin-left:.15em}
 .hero-name{font-family:var(--fd);font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em;margin-top:1.8rem;line-height:1.05;position:relative;display:block;text-align:center;animation:fade-up .7s .45s cubic-bezier(.25,1,.5,1) both}
 .hero-name span{color:var(--lime)}
 .hero-name:hover{animation:glitch .4s steps(2) both}
@@ -490,7 +490,11 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 <section id="hero">
   <div class="hero-content">
     <div class="hello-eyebrow">Portfolio · 2026</div>
-    <div class="hello-cycler" id="helloCycler"></div>
+    <div class="hello-cycler" id="helloCycler">
+      <div class="hello-word" id="helloWord">
+        <span id="helloText"></span><span class="hello-cursor"></span><span class="lang-sup" id="helloLang"></span>
+      </div>
+    </div>
     <div class="hero-name rv">JOHAN S <span>VARUGHESE.</span></div>
     <p class="hero-tagline rv d1">Civic-tech innovator behind India's first AI-powered election intelligence platform. IET Chairperson &amp; Kerala THRIVE State Lead. Final-year CS &amp; AI undergraduate at MBCET.</p>
     <div class="hero-ctas rv d2">
@@ -691,27 +695,41 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   <div class="sec-label">Research Papers</div>
   <div class="papers-grid">
 
-    <!-- PAPER 1 — Update data-modal="res0" content in the MDATA JS object below -->
     <div class="paper-card rv" data-modal="res0">
       <span class="paper-arrow">↗</span>
-      <span class="paper-status review">Under Review</span>
-      <div class="paper-title">Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks</div>
-      <div class="paper-venue">ICMLA 2026 · Main Track · Rochester Hills, MI, USA</div>
-      <div class="paper-abstract">A novel framework for detecting adversarial training attacks in federated learning systems through analysis of optimization trajectory geometry and spectral dynamics. By monitoring low-rank subspace evolution and gradient manifold perturbations across training rounds, the system identifies malicious participants without accessing raw client data.</div>
+      <span class="paper-status review">Under Review · ICMLA 2025</span>
+      <div class="paper-title">Steering Vectors Break Sparse Autoencoder Decomposition: Formal Bounds, Distribution Drift Metrics, and a Manifold-Constrained Correction</div>
+      <div class="paper-venue">ICMLA 2025 · Main Track · Anonymous Submission</div>
+      <div class="paper-abstract">We show that activation steering systematically displaces representations outside the SAE training manifold, causing decomposition quality to degrade through three structurally distinct failure modes. Introduces Distribution-Aware Steering (DAS) with a closed-form OOD-reduction guarantee. Validated on a controlled benchmark reproducible in 22s on CPU.</div>
       <div class="paper-kws">
-        <span class="paper-kw">Federated Learning</span>
-        <span class="paper-kw">Adversarial ML</span>
-        <span class="paper-kw">Spectral Dynamics</span>
-        <span class="paper-kw">Security</span>
-        <span class="paper-kw">Optimization Geometry</span>
+        <span class="paper-kw">Sparse Autoencoders</span>
+        <span class="paper-kw">Activation Steering</span>
+        <span class="paper-kw">Mechanistic Interpretability</span>
+        <span class="paper-kw">OOD Detection</span>
+        <span class="paper-kw">LLM Safety</span>
       </div>
     </div>
 
-    <!-- ADD MORE PAPERS: Copy the .paper-card div above, update data-modal to res1, res2, etc., and add matching entry to MDATA in the script below -->
-    <div class="paper-card add-slot rv d1">
+    <div class="paper-card rv d1" data-modal="res1">
+      <span class="paper-arrow">↗</span>
+      <span class="paper-status review">Under Review</span>
+      <div class="paper-title">Characterizing Bias Interactions in LLM-as-a-Judge Evaluation: A Factorial Analysis with the Bias Interaction Coefficient</div>
+      <div class="paper-venue">Under Review · Blind Submission · Pre-registered at OSF</div>
+      <div class="paper-abstract">First 2³ factorial analysis of bias interactions in LLM judge evaluation. Proves sequential single-bias correction leaves residual bias 4.4× the null baseline when position and verbosity biases interact (BICpv = 1.90, p &lt; 0.001). Introduces the Bias Interaction Coefficient as a cross-judge diagnostic.</div>
+      <div class="paper-kws">
+        <span class="paper-kw">LLM Evaluation</span>
+        <span class="paper-kw">Positional Bias</span>
+        <span class="paper-kw">Verbosity Bias</span>
+        <span class="paper-kw">Factorial Design</span>
+        <span class="paper-kw">Bias Interaction</span>
+      </div>
+    </div>
+
+    <!-- ADD MORE PAPERS: Copy a .paper-card div above, change data-modal="res2" and add matching entry to MDATA in the script -->
+    <div class="paper-card add-slot rv">
       <div class="paper-add-icon">＋</div>
       <div class="paper-add-lbl">Add Research Paper</div>
-      <div class="paper-add-sub">Copy paper-card block · add res1, res2… to MDATA</div>
+      <div class="paper-add-sub">Copy paper-card block · add res2, res3… to MDATA</div>
     </div>
 
   </div>
@@ -879,35 +897,61 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   (function g(){if(++f%2===0){const img=ctx.createImageData(W,H),d=img.data;for(let i=0;i<d.length;i+=4){const v=Math.random()*255|0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=26}ctx.putImageData(img,0,0)}requestAnimationFrame(g)})();
 })();
 
-/* ─── HELLO CYCLER ───────────────────────────── */
+/* ─── HELLO TYPEWRITER CYCLER ────────────────── */
 const HELLOS=[
-  {word:'Hello',      lang:'EN', font:"'Unbounded',sans-serif",       wt:900, st:'normal'},
-  {word:'Bonjour',    lang:'FR', font:"'Playfair Display',serif",      wt:900, st:'normal'},
-  {word:'Hola',       lang:'ES', font:"'Abril Fatface',cursive",       wt:400, st:'normal'},
-  {word:'Ciao',       lang:'IT', font:"'Cormorant Garamond',serif",    wt:700, st:'italic'},
-  {word:'Hallo',      lang:'DE', font:"'Bebas Neue',sans-serif",       wt:400, st:'normal'},
-  {word:'\u3053\u3093\u306b\u3061\u306f', lang:'JA', font:"'Noto Serif JP',serif",  wt:700, st:'normal'},
-  {word:'\uc548\ub155\ud558\uc138\uc694', lang:'KO', font:"'Noto Sans KR',sans-serif", wt:700, st:'normal'},
-  {word:'Ol\u00e1',   lang:'PT', font:"'Abril Fatface',cursive",       wt:400, st:'normal'},
-  {word:'\u0928\u092e\u0938\u094d\u0924\u0947', lang:'HI', font:"'Yatra One',cursive", wt:400, st:'normal'},
-  {word:'\u041f\u0440\u0438\u0432\u0435\u0442', lang:'RU', font:"'Russo One',sans-serif", wt:400, st:'normal'},
-  {word:'\u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd', lang:'TA', font:"'Anek Tamil',sans-serif", wt:800, st:'normal'},
-  {word:'\u0d28\u0d2e\u0d38\u0d4d\u0d15\u0d3e\u0d30\u0d02', lang:'ML', font:"'Anek Malayalam',sans-serif", wt:800, st:'normal'},
+  {word:'Hello',      lang:'EN', font:"'Unbounded',sans-serif",          wt:900, st:'normal'},
+  {word:'Bonjour',    lang:'FR', font:"'Playfair Display',serif",         wt:900, st:'normal'},
+  {word:'Hola',       lang:'ES', font:"'Abril Fatface',cursive",          wt:400, st:'normal'},
+  {word:'Ciao',       lang:'IT', font:"'Cormorant Garamond',serif",       wt:700, st:'italic'},
+  {word:'Hallo',      lang:'DE', font:"'Bebas Neue',sans-serif",          wt:400, st:'normal'},
+  {word:'\u3053\u3093\u306b\u3061\u306f',lang:'JA',font:"'Noto Serif JP',serif",       wt:700,st:'normal'},
+  {word:'\uc548\ub155\ud558\uc138\uc694',lang:'KO',font:"'Noto Sans KR',sans-serif",   wt:700,st:'normal'},
+  {word:'Ol\u00e1',   lang:'PT', font:"'Abril Fatface',cursive",          wt:400, st:'normal'},
+  {word:'\u0928\u092e\u0938\u094d\u0924\u0947',lang:'HI',font:"'Yatra One',cursive",  wt:400,st:'normal'},
+  {word:'\u041f\u0440\u0438\u0432\u0435\u0442',lang:'RU',font:"'Russo One',sans-serif",wt:400,st:'normal'},
+  {word:'\u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd',lang:'TA',font:"'Anek Tamil',sans-serif",wt:800,st:'normal'},
+  {word:'\u0d28\u0d2e\u0d38\u0d4d\u0d15\u0d3e\u0d30\u0d02',lang:'ML',font:"'Anek Malayalam',sans-serif",wt:800,st:'normal'},
 ];
-const cyc=document.getElementById('helloCycler');
-HELLOS.forEach(({word,lang,font,wt,st},i)=>{
-  const d=document.createElement('div');
-  d.className='hello-word'+(i===0?' active':'');
-  d.style.cssText=`font-family:${font};font-weight:${wt};font-style:${st}`;
-  d.innerHTML=`${word}<span class="lang-sup">${lang}</span>`;
-  cyc.appendChild(d);
-});
-let ci=0;
-setInterval(()=>{
-  const ws=cyc.querySelectorAll('.hello-word');
-  ws[ci].classList.replace('active','exit');
-  setTimeout(()=>{ws[ci].classList.remove('exit');ci=(ci+1)%HELLOS.length;ws[ci].classList.add('active')},660);
-},2400);
+const hTxt=document.getElementById('helloText');
+const hLng=document.getElementById('helloLang');
+const hWrd=document.getElementById('helloWord');
+let hci=0,hTimer=null;
+
+function setHFont(h){
+  hWrd.style.fontFamily=h.font;
+  hWrd.style.fontWeight=h.wt;
+  hWrd.style.fontStyle=h.st;
+  hLng.textContent=h.lang;
+}
+
+function typeIn(text,speed,cb){
+  const segs=[...new Intl.Segmenter().segment(text)].map(s=>s.segment);
+  let i=0;
+  hTimer=setInterval(()=>{hTxt.textContent=segs.slice(0,++i).join('');if(i>=segs.length){clearInterval(hTimer);cb&&cb()}},speed);
+}
+
+function typeOut(text,speed,cb){
+  const segs=[...new Intl.Segmenter().segment(text)].map(s=>s.segment);
+  let i=segs.length;
+  hTimer=setInterval(()=>{hTxt.textContent=segs.slice(0,--i).join('');if(i<=0){clearInterval(hTimer);cb&&cb()}},speed);
+}
+
+function helloCycle(){
+  const h=HELLOS[hci];
+  setHFont(h);
+  typeIn(h.word,68,()=>{
+    setTimeout(()=>{
+      typeOut(h.word,32,()=>{
+        hci=(hci+1)%HELLOS.length;
+        setTimeout(helloCycle,120);
+      });
+    },1900);
+  });
+}
+
+setHFont(HELLOS[0]);
+hTxt.textContent='';
+setTimeout(helloCycle,700);
 
 /* ─── COMPANIES SCROLL ───────────────────────── */
 /* To add a logo: set logo property to the image path, e.g. logo:'images/iet.png' */
@@ -1165,19 +1209,38 @@ const MDATA={
     chips:['SaaS','Industry Readiness','Product Thinking','Software Development','Communication','CARESTACK'],
     links:[{label:'CARESTACK',href:'https://www.carestack.com/'}]},
 
-  /* ── RESEARCH PAPERS ── Add more entries as res1, res2, etc. */
-  res0:{tag:'Research Paper · Under Review',title:'Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks',org:'International Conference on Machine Learning and Applications (ICMLA) · Main Track',period:'2026 · Under Review · Rochester Hills, MI, USA',
-    content:`<p>This paper introduces a geometry-driven framework for detecting adversarial poisoning attacks in federated learning (FL) systems — the first to combine optimization trajectory analysis with spectral dynamics for real-time, privacy-preserving threat detection.</p>
-    <h4>Problem Statement</h4>
-    <p>In federated learning, malicious clients can inject poisoned model updates that corrupt the global model while remaining statistically indistinguishable from legitimate updates. Existing defenses rely on gradient magnitude thresholds or clustering heuristics that fail against sophisticated, low-magnitude attacks.</p>
-    <h4>Key Contribution</h4>
-    <p>The proposed framework monitors the <strong>spectral evolution</strong> of the gradient manifold across training rounds. By tracking how model update trajectories deviate from the expected low-rank subspace of honest participants — using online Streaming PCA and Johnson-Lindenstrauss projections — it identifies adversarial updates with high precision and minimal computational overhead.</p>
-    <h4>Technical Architecture</h4>
-    <p>The system employs temporal low-rank subspace tracking for online dimensionality reduction, cosine similarity profiling of optimization curvature across rounds, and an adaptive trust-weighted aggregation module that down-weights flagged participants without removing them (preventing Sybil-resistant adaptive attacks).</p>
-    <h4>Results</h4>
-    <p>Evaluated on CIFAR-10, MNIST, and a federated medical imaging benchmark under Byzantine, label-flip, and gradient-scale attacks. The framework achieves early detection (before convergence damage) with under 3% false positive rates across all settings.</p>`,
-    chips:['Federated Learning','Adversarial ML','Spectral Analysis','Streaming PCA','Byzantine Robustness','Security','JL Projections','Online Learning'],
-    links:[{label:'ICMLA 2026',href:'https://www.icmla-conference.org/'},{label:'GitHub',href:'https://github.com/johanvarughese/geotrust-fl'}]},
+  /* ── RESEARCH PAPERS ── Add more entries as res2, res3, etc. */
+  res0:{tag:'Research Paper · Mechanistic Interpretability · ICMLA 2025',
+    title:'Steering Vectors Break Sparse Autoencoder Decomposition',
+    org:'International Conference on Machine Learning and Applications (ICMLA) 2025 · Main Track',
+    period:'Submitted · Under Review · Anonymous',
+    content:`<p>Sparse Autoencoders (SAEs) decompose neural activations into interpretable feature dictionaries, and activation steering vectors modify model behaviour by adding learned directions to intermediate representations. Combining both tools — using an SAE to interpret a steered activation — is increasingly common yet formally unexamined.</p>
+    <h4>Core Problem</h4>
+    <p>SAEs are trained on activations drawn from natural-language corpora. A steering vector applied at any non-trivial magnitude moves the activation to a point the SAE may never have encountered. In this out-of-distribution (OOD) regime, three failure modes arise that standard diagnostics cannot detect: <strong>FM-I</strong> (dead feature activation), <strong>FM-II</strong> (feature splitting artifacts), and <strong>FM-III</strong> (spurious polysemanticity).</p>
+    <h4>Theoretical Contributions</h4>
+    <p><strong>Theorem 1 — Tight Lower Bound:</strong> Decomposition error for a steered activation satisfies ε(xα) ≥ |α| ‖(I − PA)v‖, where PA projects onto the span of currently active atoms. This bound is strictly positive for any generic steering direction and grows linearly with steering magnitude — non-vacuous for any overcomplete dictionary at practical sparsity levels.</p>
+    <p><strong>Metric Insufficiency Proofs:</strong> Formal proofs that reconstruction loss, L0 sparsity, and feature variance each fail to detect any of the three failure modes. Mahalanobis distance is proven near-sufficient under a Gaussian approximation.</p>
+    <p><strong>Distribution-Aware Steering (DAS):</strong> A PCA-projection operator vDAS = VkVkᵀv / ‖VkVkᵀv‖ that reduces the Mahalanobis growth rate by the fraction of steering variance in the training subspace — with a closed-form OOD-reduction guarantee.</p>
+    <h4>Key Empirical Results</h4>
+    <p>Validated on a controlled sparse-coding benchmark (d=64, m=256, n=5,000) across 150 conditions. Random-direction vectors show Spearman ρ=−0.631 (p&lt;10⁻⁶) between normalised Mahalanobis distance and reconstruction fidelity. Concept-derived vectors (activation-difference) exhibit near-zero correlation (ρ=+0.029) — confirming manifold-aligned steering does not trigger the failure. DAS yields Cohen's d&gt;1.2 fidelity improvements (p&lt;0.006) for concept-derived vectors with no spurious benefit for random vectors. Entire benchmark reproduces in 22 seconds on CPU with no GPU or API access.</p>`,
+    chips:['Sparse Autoencoders','Activation Steering','OOD Detection','Mechanistic Interpretability','LLM Safety','PCA','Mahalanobis Distance','Formal Proofs','ICMLA 2025'],
+    links:[{label:'ICMLA 2025',href:'https://www.icmla-conference.org/'},{label:'GitHub (Anonymized)',href:'#'}]},
+
+  res1:{tag:'Research Paper · LLM Evaluation · Factorial Analysis',
+    title:'Characterizing Bias Interactions in LLM-as-a-Judge Evaluation',
+    org:'Under Review · Blind Submission · Pre-registered at OSF',
+    period:'Submitted · Under Review',
+    content:`<p>Automated evaluation pipelines for LLMs rely on LLM judges whose verdicts are systematically distorted by positional bias (BP), verbosity bias (BV), and self-preference (BS). Published mitigations — position-swapping, length-controlled win rates, cross-family panels — are deployed sequentially, encoding a strong untested assumption: that the three biases are additively independent.</p>
+    <h4>Core Theoretical Result</h4>
+    <p><strong>Proposition 1:</strong> Under a balanced 2×2 design, sequential single-bias correction converges to a residual log-odds bias of ½βPV in the joint (P=1, V=1) cell whenever βPV ≠ 0. At the empirical operating point (BICpv = 1.90), the sequential residual is <strong>4.4× that of the null-interaction baseline</strong> — larger than either main-effect bias alone. No sequential composition of independent single-bias corrections can produce an unbiased verdict when βPV ≠ 0.</p>
+    <h4>Bias Interaction Coefficient (BIC)</h4>
+    <p>A dimensionless, cross-judge-comparable diagnostic: BICij = βij / √(|βi| · |βj|). Practical decision rule — |BIC| ≤ 0.60: sequential correction adequate; 0.60 &lt; |BIC| ≤ 1.0: monitor; |BIC| &gt; 1.0: investigate interaction explicitly. BIC requires only a 100–200 pair calibration set (400–800 API calls) and integrates into existing pipelines with no modification.</p>
+    <h4>Factorial Results — 5 Judge Families, 8,000 Judgments</h4>
+    <p><strong>H1 Confirmed:</strong> P × V interaction is amplifying across all five judge families and four task types (pooled BICpv = +1.90, χ²=21.4, p&lt;0.001). Open-ended QA (+4.37) and mathematical reasoning (+3.60) show the strongest amplification — consistent with judges relying more on surface heuristics when ground truth is absent.</p>
+    <p><strong>H2 Partially Supported:</strong> V × S is suppressive (BICvs = −1.01, p=0.046) — verbose self-generated responses may partially crowd out the capacity for stylistic self-recognition, partially cancelling self-preference bias.</p>
+    <p><strong>H3 Confirmed:</strong> P × S is near-zero (BICps = +0.78, p=0.167) — position-swapping and cross-family panel corrections are empirically valid to apply independently, providing the paper's positive-null result.</p>`,
+    chips:['LLM Evaluation','Positional Bias','Verbosity Bias','Self-Preference','Factorial Design','BIC Metric','Bias Interaction','Automated Evaluation','RLHF'],
+    links:[{label:'OSF Pre-registration',href:'#'},{label:'GitHub (Anonymized)',href:'#'}]},
 };
 
 /* ─── MODAL SYSTEM ───────────────────────────── */
