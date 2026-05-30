@@ -49,11 +49,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .hero-content{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 3rem 4rem;position:relative;z-index:2}
 .hello-eyebrow{font-family:var(--fm);font-size:.62rem;color:var(--lime);text-transform:uppercase;letter-spacing:.35em;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:1rem;animation:fade-up .7s .1s cubic-bezier(.25,1,.5,1) both}
 .hello-eyebrow::before,.hello-eyebrow::after{content:'';display:inline-block;width:2rem;height:1px;background:var(--lime)}
-.hello-cycler{width:100%;height:clamp(4.5rem,13vw,12rem);position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both;overflow:hidden}
-.hello-word{font-size:clamp(4.5rem,13vw,12rem);font-weight:900;line-height:1;color:var(--white);display:flex;align-items:flex-end;justify-content:center;gap:.1em;white-space:nowrap;min-height:1em}
+.hello-cycler{width:100%;height:clamp(2.5rem,9vw,9rem);position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;animation:fade-up .7s .2s cubic-bezier(.25,1,.5,1) both;overflow:hidden}
+.hello-word{font-size:clamp(2.5rem,9vw,9rem);font-weight:900;line-height:1;color:var(--white);display:flex;align-items:flex-end;justify-content:center;gap:.1em;white-space:nowrap;min-height:1em}
 .hello-cursor{display:inline-block;width:0.055em;height:0.82em;background:var(--lime);margin-bottom:0.1em;animation:hc-blink .75s step-end infinite;flex-shrink:0;border-radius:1px;align-self:flex-end}
 @keyframes hc-blink{0%,100%{opacity:1}50%{opacity:0}}
-.lang-sup{font-size:.08em;font-family:var(--fm);color:var(--lime);padding-bottom:.5em;letter-spacing:.2em;opacity:.75;margin-left:.15em}
+.lang-sup{font-size:clamp(.5rem,.65vw,.7rem);font-family:var(--fm);color:var(--lime);letter-spacing:.18em;opacity:.7;margin-left:.3em;align-self:flex-end;margin-bottom:.35em;white-space:nowrap;text-transform:uppercase}
 .hero-name{font-family:var(--fd);font-size:clamp(2rem,5vw,4.5rem);font-weight:700;letter-spacing:-.03em;margin-top:1.8rem;line-height:1.05;position:relative;display:block;text-align:center;animation:fade-up .7s .45s cubic-bezier(.25,1,.5,1) both}
 .hero-name span{color:var(--lime)}
 .hero-name:hover{animation:glitch .4s steps(2) both}
@@ -212,11 +212,8 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 #research{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .papers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(197,241,53,.12);margin-top:0}
 .paper-card{background:var(--black);padding:2.5rem;position:relative;cursor:pointer;transition:background .3s;overflow:hidden;min-height:260px}
-.paper-card.add-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;border:2px dashed rgba(197,241,53,.12);background:transparent}
-.paper-card.add-slot:hover{background:rgba(197,241,53,.02)}
-.paper-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.76,0,.24,1)}
-.paper-card:not(.add-slot):hover{background:rgba(197,241,53,.025)}
-.paper-card:not(.add-slot):hover::before{transform:scaleY(1)}
+.paper-card:hover{background:rgba(197,241,53,.025)}
+.paper-card:hover::before{transform:scaleY(1)}
 .paper-arrow{position:absolute;top:2rem;right:2rem;font-size:1rem;color:rgba(197,241,53,.2);transition:all .3s}
 .paper-card:hover .paper-arrow{color:var(--lime);transform:translate(4px,-4px)}
 .paper-status{font-family:var(--fm);font-size:.46rem;text-transform:uppercase;letter-spacing:.2em;padding:.22rem .8rem;display:inline-block;margin-bottom:1.2rem}
@@ -232,7 +229,21 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
 .paper-add-icon{font-size:2.5rem;color:rgba(197,241,53,.15);margin-bottom:.8rem;line-height:1}
 .paper-add-lbl{font-family:var(--fm);font-size:.5rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,241,53,.18)}
 .paper-add-sub{font-family:var(--fm);font-size:.42rem;color:rgba(197,241,53,.1);margin-top:.4rem;letter-spacing:.1em}
-@media(max-width:768px){.papers-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  /* Research papers — individual bordered boxes, no grid-background trick */
+  .papers-grid{
+    grid-template-columns:1fr;
+    gap:.75rem;
+    background:transparent;
+  }
+  .paper-card{
+    grid-column:1!important; /* Collapse span-2 on OTSD card */
+    border:1px solid rgba(197,241,53,.15);
+    min-height:auto;
+  }
+  .paper-card::before{width:100%;height:3px;top:0;bottom:auto;transform:scaleX(0);transform-origin:left}
+  .paper-card:hover::before{transform:scaleX(1)}
+}
 
 /* TESTIMONIALS INFINITE SCROLL */
 #testimonials{padding:6rem 0;border-bottom:1px solid rgba(197,241,53,.09);overflow:hidden}
@@ -424,33 +435,50 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   /* ── end overlay nav ── */
 
   section,#download-section{padding:4rem 1.5rem}
+  #hero .hero-content{padding:6rem 1.5rem 3rem}
   #about{grid-template-columns:1fr;gap:2.5rem}
   .exp-grid{grid-template-columns:1fr}
+  .exp-card{min-height:auto;padding:1.5rem}
+  .exp-open-hint{display:none}
   .bento{grid-template-columns:1fr}
+  .bento-card{padding:1.5rem;min-height:auto}
   .bento-card.wide{grid-column:span 1}
   .skills-cols{grid-template-columns:1fr;gap:0}
   .contact-grid{grid-template-columns:1fr 1fr}
   .contact-layout{flex-direction:column}
   .contact-right{width:100%;box-sizing:border-box}
   .hero-stats{flex-direction:column}
-  .stat-item{border-right:none;border-bottom:1px solid rgba(197,241,53,.12)}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(197,241,53,.12);padding:1.2rem 1.5rem}
   .lang-grid{grid-template-columns:repeat(2,1fr)}
-  #download-section{flex-direction:column;gap:3rem}
+  #download-section{flex-direction:column;gap:2rem}
   .dl-big-box{width:100%}
   .dl-pill{bottom:1rem;right:1rem}
   .hero-ctas{flex-direction:column;align-items:center}
-  .testi-card{width:320px}
+  .btn-lime,.btn-ghost,.dl-box{width:100%;justify-content:center}
+  .hero-tagline{font-size:.92rem}
+  .testi-card{width:88vw;max-width:360px}
+  .testi-scroll-outer{-webkit-mask-image:linear-gradient(to right,transparent 0,black 3%,black 97%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,black 3%,black 97%,transparent 100%)}
   .modal-panel{width:100vw;border-left:none;border-top:3px solid var(--lime)}
-  /* Smaller hello cycler on phones */
-  .hello-cycler{height:clamp(2.6rem,12vw,4.5rem)}
-  .hello-word{font-size:clamp(2.6rem,12vw,4.5rem)}
+  .co-item{padding:1.2rem 2rem}
+  .contact-big{font-size:clamp(3rem,13vw,5rem)}
+  .contact-grid{margin-top:2.5rem;padding-top:2rem;gap:1.5rem}
+  .ach-item{flex-direction:column;gap:.5rem;padding:1.2rem 0}
+  .ach-yr{align-self:flex-start}
+  .chips{gap:.35rem}
+  .chip{font-size:.5rem;padding:.3rem .7rem}
 }
 @media(max-width:480px){
   .contact-grid{grid-template-columns:1fr}
   .cert-grid{grid-template-columns:1fr}
-  /* Even smaller on very small screens */
-  .hello-cycler{height:clamp(2rem,11vw,3.5rem)}
-  .hello-word{font-size:clamp(2rem,11vw,3.5rem)}
+  .hero-name{font-size:1.8rem}
+  .stat-num{font-size:1.8rem}
+  .about-big{font-size:1.5rem}
+  .testi-card{width:82vw}
+  .modal-body{padding:1.5rem}
+  .modal-title{font-size:1.1rem}
+  .pub-actions{gap:.5rem}
+  .pub-link{font-size:.5rem;padding:.32rem .7rem}
+  #pongCanvas{width:100%;height:auto;max-width:320px}
 }
 </style>
 </head>
@@ -492,7 +520,7 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
     <div class="hello-eyebrow">Portfolio · 2026</div>
     <div class="hello-cycler" id="helloCycler">
       <div class="hello-word" id="helloWord">
-        <span id="helloText"></span><span class="hello-cursor"></span><span class="lang-sup" id="helloLang"></span>
+        <span id="helloText"></span><span class="hello-cursor"></span>
       </div>
     </div>
     <div class="hero-name rv">JOHAN S <span>VARUGHESE.</span></div>
@@ -725,11 +753,20 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
       </div>
     </div>
 
-    <!-- ADD MORE PAPERS: Copy a .paper-card div above, change data-modal="res2" and add matching entry to MDATA in the script -->
-    <div class="paper-card add-slot rv">
-      <div class="paper-add-icon">＋</div>
-      <div class="paper-add-lbl">Add Research Paper</div>
-      <div class="paper-add-sub">Copy paper-card block · add res2, res3… to MDATA</div>
+    <!-- ADD MORE PAPERS: Copy a .paper-card div, change data-modal="res3" and add matching entry to MDATA -->
+    <div class="paper-card rv d2" data-modal="res2" style="grid-column:span 2">
+      <span class="paper-arrow">↗</span>
+      <span class="paper-status review">Under Review · ICMLA</span>
+      <div class="paper-title">Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks</div>
+      <div class="paper-venue">ICMLA · Main Track · Anonymous Submission</div>
+      <div class="paper-abstract">OTSD — a lightweight online framework detecting adversarial training attacks via trajectory curvature geometry and Hessian spectral dynamics. Mean AUROC 0.823 (+7.3pts over best baseline), 18-step median detection latency, and &lt;4% wall-clock overhead on ResNet-18. Validated over 10 random seeds across CIFAR-10, CIFAR-100, TinyImageNet and two architectures.</div>
+      <div class="paper-kws">
+        <span class="paper-kw">Adversarial Attacks</span>
+        <span class="paper-kw">Optimization Geometry</span>
+        <span class="paper-kw">Spectral Analysis</span>
+        <span class="paper-kw">AI Security</span>
+        <span class="paper-kw">Online Detection</span>
+      </div>
     </div>
 
   </div>
@@ -897,61 +934,74 @@ section{padding:6rem 3rem;border-bottom:1px solid rgba(197,241,53,.09)}
   (function g(){if(++f%2===0){const img=ctx.createImageData(W,H),d=img.data;for(let i=0;i<d.length;i+=4){const v=Math.random()*255|0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=26}ctx.putImageData(img,0,0)}requestAnimationFrame(g)})();
 })();
 
-/* ─── HELLO TYPEWRITER CYCLER ────────────────── */
-const HELLOS=[
-  {word:'Hello',      lang:'EN', font:"'Unbounded',sans-serif",          wt:900, st:'normal'},
-  {word:'Bonjour',    lang:'FR', font:"'Playfair Display',serif",         wt:900, st:'normal'},
-  {word:'Hola',       lang:'ES', font:"'Abril Fatface',cursive",          wt:400, st:'normal'},
-  {word:'Ciao',       lang:'IT', font:"'Cormorant Garamond',serif",       wt:700, st:'italic'},
-  {word:'Hallo',      lang:'DE', font:"'Bebas Neue',sans-serif",          wt:400, st:'normal'},
-  {word:'\u3053\u3093\u306b\u3061\u306f',lang:'JA',font:"'Noto Serif JP',serif",       wt:700,st:'normal'},
-  {word:'\uc548\ub155\ud558\uc138\uc694',lang:'KO',font:"'Noto Sans KR',sans-serif",   wt:700,st:'normal'},
-  {word:'Ol\u00e1',   lang:'PT', font:"'Abril Fatface',cursive",          wt:400, st:'normal'},
-  {word:'\u0928\u092e\u0938\u094d\u0924\u0947',lang:'HI',font:"'Yatra One',cursive",  wt:400,st:'normal'},
-  {word:'\u041f\u0440\u0438\u0432\u0435\u0442',lang:'RU',font:"'Russo One',sans-serif",wt:400,st:'normal'},
-  {word:'\u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd',lang:'TA',font:"'Anek Tamil',sans-serif",wt:800,st:'normal'},
-  {word:'\u0d28\u0d2e\u0d38\u0d4d\u0d15\u0d3e\u0d30\u0d02',lang:'ML',font:"'Anek Malayalam',sans-serif",wt:800,st:'normal'},
+/* ─── ROLE TYPEWRITER CYCLER ─────────────────── */
+const ROLES=[
+  {word:'RESEARCHER',  tag:'AI & ML SECURITY',      font:"'Unbounded',sans-serif",     wt:900, st:'normal'},
+  {word:'ENGINEER',    tag:'FULL-STACK & SYSTEMS',   font:"'Space Mono',monospace",     wt:700, st:'normal'},
+  {word:'INNOVATOR',   tag:'CIVIC TECHNOLOGY',       font:"'Bebas Neue',sans-serif",    wt:400, st:'normal'},
+  {word:'LEADER',      tag:'IET CHAIRPERSON',        font:"'Playfair Display',serif",   wt:900, st:'italic'},
+  {word:'BUILDER',     tag:'FEDERATED LEARNING',     font:"'Unbounded',sans-serif",     wt:300, st:'normal'},
+  {word:'PIONEER',     tag:'THRIVE · KERALA',        font:"'Cormorant Garamond',serif", wt:700, st:'italic'},
+  {word:'EXPLORER',    tag:'UAV & DRONES',           font:"'Russo One',sans-serif",     wt:400, st:'normal'},
 ];
 const hTxt=document.getElementById('helloText');
-const hLng=document.getElementById('helloLang');
 const hWrd=document.getElementById('helloWord');
+const hCyc=document.getElementById('helloCycler');
 let hci=0,hTimer=null;
+
+/* Per-word fit: measures each word at max size, scales down only if it overflows */
+function calcFit(word,font,weight,style){
+  const maxPx=Math.min(window.innerWidth*0.09,144); // 9vw, capped at 9rem
+  const avail=(hCyc?hCyc.offsetWidth:window.innerWidth)-48;
+  const probe=document.createElement('span');
+  probe.style.cssText=`position:fixed;top:-9999px;visibility:hidden;white-space:nowrap;font-family:${font};font-weight:${weight};font-style:${style};font-size:${maxPx}px`;
+  probe.textContent=word;
+  document.body.appendChild(probe);
+  const textW=probe.offsetWidth;
+  document.body.removeChild(probe);
+  const sz=Math.max(28,Math.floor(Math.min(maxPx, maxPx*(avail/textW))));
+  return sz+'px';
+}
 
 function setHFont(h){
   hWrd.style.fontFamily=h.font;
   hWrd.style.fontWeight=h.wt;
   hWrd.style.fontStyle=h.st;
-  hLng.textContent=h.lang;
+  const sz=calcFit(h.word,h.font,h.wt,h.st);
+  hWrd.style.fontSize=sz;
+  if(hCyc)hCyc.style.height=sz;
 }
 
 function typeIn(text,speed,cb){
-  const segs=[...new Intl.Segmenter().segment(text)].map(s=>s.segment);
-  let i=0;
-  hTimer=setInterval(()=>{hTxt.textContent=segs.slice(0,++i).join('');if(i>=segs.length){clearInterval(hTimer);cb&&cb()}},speed);
+  const chars=[...text];let i=0;
+  hTimer=setInterval(()=>{hTxt.textContent=chars.slice(0,++i).join('');if(i>=chars.length){clearInterval(hTimer);cb&&cb()}},speed);
 }
 
 function typeOut(text,speed,cb){
-  const segs=[...new Intl.Segmenter().segment(text)].map(s=>s.segment);
-  let i=segs.length;
-  hTimer=setInterval(()=>{hTxt.textContent=segs.slice(0,--i).join('');if(i<=0){clearInterval(hTimer);cb&&cb()}},speed);
+  const chars=[...text];let i=chars.length;
+  hTimer=setInterval(()=>{hTxt.textContent=chars.slice(0,--i).join('');if(i<=0){clearInterval(hTimer);cb&&cb()}},speed);
 }
 
 function helloCycle(){
-  const h=HELLOS[hci];
+  const h=ROLES[hci];
   setHFont(h);
-  typeIn(h.word,68,()=>{
+  typeIn(h.word,72,()=>{
     setTimeout(()=>{
-      typeOut(h.word,32,()=>{
-        hci=(hci+1)%HELLOS.length;
-        setTimeout(helloCycle,120);
+      typeOut(h.word,38,()=>{
+        hci=(hci+1)%ROLES.length;
+        setTimeout(helloCycle,150);
       });
-    },1900);
+    },2200);
   });
 }
-
-setHFont(HELLOS[0]);
+setHFont(ROLES[0]);
 hTxt.textContent='';
 setTimeout(helloCycle,700);
+
+/* Refit on resize */
+window.addEventListener('resize',()=>{
+  if(hci<ROLES.length)setHFont(ROLES[hci]);
+},{passive:true});
 
 /* ─── COMPANIES SCROLL ───────────────────────── */
 /* To add a logo: set logo property to the image path, e.g. logo:'images/iet.png' */
@@ -1241,6 +1291,22 @@ const MDATA={
     <p><strong>H3 Confirmed:</strong> P × S is near-zero (BICps = +0.78, p=0.167) — position-swapping and cross-family panel corrections are empirically valid to apply independently, providing the paper's positive-null result.</p>`,
     chips:['LLM Evaluation','Positional Bias','Verbosity Bias','Self-Preference','Factorial Design','BIC Metric','Bias Interaction','Automated Evaluation','RLHF'],
     links:[{label:'OSF Pre-registration',href:'#'},{label:'GitHub (Anonymized)',href:'#'}]},
+
+  res2:{tag:'Research Paper · AI Security · ICMLA',
+    title:'Optimization Trajectory Geometry and Spectral Dynamics for Early Detection of Adversarial Training Attacks',
+    org:'ICMLA · Main Track · Anonymous Submission',
+    period:'Submitted · Under Review',
+    content:`<p>Deep neural network training is increasingly deployed in settings where the pipeline itself may be compromised — through poisoned datasets, gradient extraction, or malicious fine-tuning. Existing defenses monitor what the model learns by inspecting test accuracy or activation patterns. OTSD asks a different question: how does the optimizer move through parameter space during an attack, and can geometric anomalies be detected online before the model converges?</p>
+    <h4>The OTSD Framework</h4>
+    <p>OTSD (Optimization Trajectory Spectral Detector) monitors training dynamics through two complementary lenses. <strong>Trajectory Curvature Geometry</strong> tracks discrete acceleration and directional instability of parameter-space motion using Frenet–Serret curvature approximations — costing only O(d) per step with no matrix operations. <strong>Spectral Evolution</strong> monitors the dominant eigenvalue structure of the empirical Hessian and gradient covariance matrix via randomized power iteration and sliding-window SVD.</p>
+    <h4>Three Attack Signatures</h4>
+    <p><strong>Label Poisoning:</strong> Sustained curvature increase — the most detectable pattern. <strong>Gradient Inversion:</strong> High-frequency curvature oscillations — hardest to detect, reflects low surface-level perturbation. <strong>Malicious Fine-Tuning:</strong> Transient spike followed by suppression — requires the fused curvature + spectral detection to catch reliably.</p>
+    <h4>Efficient Online Detection</h4>
+    <p>The full pipeline fuses both signals via an EWMA baseline with a CUSUM-style alert that fires after nconfirm=3 consecutive threshold crossings. Total overhead is <strong>less than 4% wall-clock time</strong> on ResNet-18/CIFAR-10 (RTX 3090). Zero architecture changes required — attaches via PyTorch hooks. Memory footprint: ~880 MB for rank-10 gradient covariance + trajectory buffer on an 11M-parameter model.</p>
+    <h4>Empirical Results — 10 Random Seeds</h4>
+    <p><strong>Main AUROC (ResNet-18/CIFAR-10):</strong> OTSD (full) achieves mean 0.823 vs SpectralSig 0.750 (+7.3 absolute points). Both curvature and spectral components contribute independently. Detection latency: median <strong>18 training steps</strong> at FPR ≤ 5%, 15–20 steps faster than Mahalanobis. Cross-dataset AUROC ranges 0.74–0.86 across all nine dataset–attack combinations for ResNet-18 and ViT-Tiny. Honest limitations: AUROC drops below 0.65 for all methods at &lt;3% poisoning rate; adaptive gradient-inversion attackers reduce OTSD to 0.70. Scalable up to ~25M parameters; marginal at 86M without layer-wise subsampling.</p>`,
+    chips:['Adversarial ML','Hessian Eigenvalues','Optimization Geometry','Spectral Dynamics','CUSUM Detection','Randomized SVD','ResNet-18','ViT-Tiny','CIFAR','AI Security','Online Learning'],
+    links:[{label:'ICMLA',href:'https://www.icmla-conference.org/'},{label:'GitHub (Anonymized)',href:'#'}]},
 };
 
 /* ─── MODAL SYSTEM ───────────────────────────── */
